@@ -14,13 +14,15 @@ An Android app that helps people build the habit of flossing and using mouthwash
 | Streaks | Separate for floss and mouthwash; each has a current and a longest streak |
 | Mouthwash timing | Included, with a short note wherever official sources differ, each linked to its source |
 | Sync | Project lives in this GitHub repo (`m-c-v-k/floss-habit`); commits per milestone |
+| App name | Floss Streak (dev flavour: "Floss Streak (dev)") |
+| App icon | A tooth, as an adaptive icon |
 
 ## Tech stack
 - Kotlin, Jetpack Compose (Material 3)
 - Jetpack Glance for widgets
 - Room for local storage (single source of truth shared by app, widgets and notification actions)
 - WorkManager for scheduling reminders
-- Min SDK to be decided on the PC (suggest 26+); target the current stable SDK
+- Min SDK 26 (Android 8.0), target SDK 36
 
 ## Data model
 `HabitLog`: `id`, `habit` (`FLOSS` | `MOUTHWASH`), `timestamp` (UTC), `localDate` (derived in the user's time zone at log time).
@@ -73,6 +75,6 @@ Content rules:
 
 ## Open items
 - Verify exact source pages and wording for each article.
-- Choose min SDK and the reminder scheduling approach.
-- App name, icon and package name (`com.example.flosshabit` as a placeholder).
+- Choose the reminder scheduling approach.
+- Package name (`com.example.flosshabit` as a placeholder).
 - Privacy: all data stays on the device; no accounts or analytics unless decided otherwise.
