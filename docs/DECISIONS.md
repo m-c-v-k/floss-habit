@@ -2,6 +2,9 @@
 
 Newest first. Format: date, decision, why. Product decisions made before this log are in the Decisions table in `SPEC.md`.
 
+- **2026-10-21**: Health content only from government or public-sector sources in the country of each language: Swedish text from Swedish sources (1177, Folktandvården, Socialstyrelsen), English text from UK sources (NHS, GOV.UK). ADA MouthHealthy is dropped as a US, non-government source. Keeps each language's advice consistent with the health system its readers use.
+- **2026-10-21**: Reminders use WorkManager, not exact alarms. It survives reboot and needs no exact-alarm permission; a reminder arriving a few minutes late is fine for a daily habit.
+- **2026-10-21**: Package name `com.mcvk.flosshabit` (same pattern as `com.mcvk.trainingapp`), replacing the `com.example.flosshabit` placeholder. Set before the `:app` module exists, because the applicationId cannot change after release.
 - **2026-10-17**: Min SDK 26 (Android 8.0), target SDK 36. Notification channels (one per habit), `java.time` (used in `:core`) and adaptive icons are all built in from 26, so no compatibility paths or desugaring are needed; it still covers about 97% of active devices.
 - **2026-10-17**: App name **Floss Streak**, icon a tooth. The name says what the app tracks. The package name stays `com.example.flosshabit` for now; renaming it is a separate decision.
 - **2026-10-17**: Same git and coding standards as Android_Training_App (see `CLAUDE.md`): protected `dev` and `main`, feature branches squash-merged into `dev`, `dev` merged into `main` for a prod release, prod releases tagged `vX.Y.Z`. Keeps one way of working across Marcus's apps.

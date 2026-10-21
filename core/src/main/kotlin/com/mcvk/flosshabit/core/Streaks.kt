@@ -1,4 +1,4 @@
-package com.example.flosshabit.core
+package com.mcvk.flosshabit.core
 
 import java.time.LocalDate
 

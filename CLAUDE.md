@@ -29,7 +29,7 @@ Kotlin + Jetpack Compose Android app (with Glance widgets) for building a flossi
 
 ## Code conventions
 
-- Package root `com.example.flosshabit` (placeholder until the final name is chosen, see `SPEC.md`); group by feature (`dashboard/`, `widgets/`, `reminders/`, `learn/`, ...) with `data/`, `ui/`, `domain/` inside when needed.
+- Package root `com.mcvk.flosshabit`; group by feature (`dashboard/`, `widgets/`, `reminders/`, `learn/`, ...) with `data/`, `ui/`, `domain/` inside when needed.
 - MVVM: Composables are stateless where possible; ViewModels expose `StateFlow<UiState>` and take events as functions.
 - **Build for reversal:** prefer choices that are cheap to undo (small commits, additive migrations, no big-bang rewrites).
 - **Loosely coupled, not over-modular:** `:core` + `:app` only; small functions and classes with one job; interfaces only at real seams (storage, clock, reminders); features never reach into each other's internals. Keep domain logic (streaks, scheduling rules) pure Kotlin in `:core` so it is unit-testable.
