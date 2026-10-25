@@ -20,4 +20,20 @@
     <!-- %1$s is the habit name. -->
     <string name="logged_message">%1$s logged</string>
     <string name="undo">Undo</string>
+    <string name="history_title">History</string>
+    <string name="history_week">7 days</string>
+    <string name="history_month">Month</string>
+    <string name="history_all_time">All time</string>
+    <plurals name="total_days">
+        <item quantity="one">%d day in total</item>
+        <item quantity="other">%d days in total</item>
+    </plurals>
+    <!-- Screen reader text for one heatmap day. %1$s is the date, %2$d the number of logs. -->
+    <plurals name="day_logs">
+        <item quantity="one">%1$s: %2$d log</item>
+        <item quantity="other">%1$s: %2$d logs</item>
+    </plurals>
+    <!-- Legend at each end of the heatmap shades. -->
+    <string name="history_fewer">Fewer</string>
+    <string name="history_more">More</string>
 </resources>
