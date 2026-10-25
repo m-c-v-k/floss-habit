@@ -4,19 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.mcvk.flosshabit.dashboard.DashboardRoute
+import com.mcvk.flosshabit.dashboard.DashboardViewModel
 import com.mcvk.flosshabit.ui.theme.FlossHabitTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,36 +18,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FlossHabitTheme {
-                PlaceholderScreen()
+                DashboardRoute(viewModel(factory = dashboardFactory))
             }
         }
     }
-}
 
-/** Stand-in until the dashboard (milestone 2) replaces it. */
-@Composable
-fun PlaceholderScreen(modifier: Modifier = Modifier) {
-    Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(24.dp),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(
-                text = stringResource(R.string.placeholder_message),
-                style = MaterialTheme.typography.titleMedium,
-                textAlign = TextAlign.Center,
-            )
+    private companion object {
+        val dashboardFactory = viewModelFactory {
+            initializer {
+                val app = this[APPLICATION_KEY] as FlossHabitApp
+                DashboardViewModel(app.habitLogRepository)
+            }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PlaceholderScreenPreview() {
-    FlossHabitTheme {
-        PlaceholderScreen()
     }
 }

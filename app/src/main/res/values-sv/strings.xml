@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="placeholder_message">Här visas dina sviter för tandtråd och munskölj.</string>
+    <string name="dashboard_title">I dag</string>
+    <string name="habit_floss">Tandtråd</string>
+    <string name="habit_mouthwash">Munskölj</string>
+    <string name="not_done_today">Inte gjort i dag</string>
+    <plurals name="done_today">
+        <item quantity="one">Gjort i dag</item>
+        <item quantity="other">Gjort %d gånger i dag</item>
+    </plurals>
+    <string name="streaks">Svit: %1$s · Längsta: %2$s</string>
+    <plurals name="days">
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dagar</item>
+    </plurals>
+    <string name="done">Klar</string>
+    <string name="log_again">Logga igen</string>
+    <string name="logged_message">Loggat: %1$s</string>
+    <string name="undo">Ångra</string>
 </resources>

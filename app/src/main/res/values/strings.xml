@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Floss Streak</string>
-    <string name="placeholder_message">Your floss and mouthwash streaks will show here.</string>
+    <string name="dashboard_title">Today</string>
+    <string name="habit_floss">Floss</string>
+    <string name="habit_mouthwash">Mouthwash</string>
+    <string name="not_done_today">Not done today</string>
+    <plurals name="done_today">
+        <item quantity="one">Done today</item>
+        <item quantity="other">Done %d times today</item>
+    </plurals>
+    <!-- Current streak, then longest streak; each is a "days" plural. -->
+    <string name="streaks">Streak: %1$s · Longest: %2$s</string>
+    <plurals name="days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <string name="done">Done</string>
+    <string name="log_again">Log again</string>
+    <!-- %1$s is the habit name. -->
+    <string name="logged_message">%1$s logged</string>
+    <string name="undo">Undo</string>
 </resources>

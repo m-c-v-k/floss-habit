@@ -2,6 +2,8 @@
 
 Newest first. Format: date, decision, why. Product decisions made before this log are in the Decisions table in `SPEC.md`.
 
+- **2026-10-25**: A habit can be logged more than once a day. Every log is kept so the history can show a heatmap of logs per day; streaks still count each day once. After the first log the button reads "Log again"; undo removes the last log.
+- **2026-10-25**: History view defaults to the last 7 days, with month and all-time views.
 - **2026-10-25**: Room database v1 with one `habit_log` table: `id` (auto), `habit` (enum name), `timestamp` (epoch millis, UTC), `local_date` (ISO text, fixed at log time), indexed on (`habit`, `local_date`). Text dates stay readable and sort correctly. Time comes from `java.time.Clock` and the zone is read at each log, so travel applies without a restart; no custom clock interface.
 - **2026-10-25**: App data is included in Android backup (`allowBackup="true"` with backup rules), so streaks survive a phone change. It stays optional: users turn backup on or off in system settings, and on Android 12+ cloud backup only runs when it is end-to-end encrypted. No in-app toggle for now.
 - **2026-10-25**: Toolchain matches Android_Training_App: Gradle 9.4.1, AGP 9.2.1 (built-in Kotlin), Kotlin 2.2.10, compile SDK 36.1, Java 17. One set of versions across Marcus's apps; compile SDK 36.1 because the local `android-36` platform has no `android.jar`.
