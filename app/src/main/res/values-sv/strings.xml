@@ -17,4 +17,18 @@
     <string name="log_again">Logga igen</string>
     <string name="logged_message">Loggat: %1$s</string>
     <string name="undo">Ångra</string>
+    <string name="history_title">Historik</string>
+    <string name="history_week">7 dagar</string>
+    <string name="history_month">Månad</string>
+    <string name="history_all_time">All tid</string>
+    <plurals name="total_days">
+        <item quantity="one">%d dag totalt</item>
+        <item quantity="other">%d dagar totalt</item>
+    </plurals>
+    <plurals name="day_logs">
+        <item quantity="one">%1$s: %2$d loggning</item>
+        <item quantity="other">%1$s: %2$d loggningar</item>
+    </plurals>
+    <string name="history_fewer">Färre</string>
+    <string name="history_more">Fler</string>
 </resources>

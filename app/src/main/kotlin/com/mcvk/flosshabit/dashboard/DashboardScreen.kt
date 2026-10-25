@@ -38,6 +38,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mcvk.flosshabit.R
 import com.mcvk.flosshabit.core.Habit
 import com.mcvk.flosshabit.core.HabitLog
+import com.mcvk.flosshabit.core.HistoryRange
 import com.mcvk.flosshabit.core.Streak
 import com.mcvk.flosshabit.ui.theme.FlossHabitTheme
 
@@ -49,6 +50,7 @@ fun DashboardRoute(viewModel: DashboardViewModel, modifier: Modifier = Modifier)
         onDone = viewModel::onDone,
         onUndo = viewModel::onUndo,
         onUndoDismissed = viewModel::onUndoDismissed,
+        onHistoryRangeSelected = viewModel::onHistoryRangeSelected,
         modifier = modifier,
     )
 }
@@ -59,6 +61,7 @@ fun DashboardScreen(
     onDone: (Habit) -> Unit,
     onUndo: () -> Unit,
     onUndoDismissed: () -> Unit,
+    onHistoryRangeSelected: (HistoryRange) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -82,6 +85,14 @@ fun DashboardScreen(
             )
             state.cards.forEach { card ->
                 HabitCard(card, onDone = { onDone(card.habit) })
+            }
+            if (!state.isLoading) {
+                HistorySection(
+                    range = state.historyRange,
+                    history = state.history,
+                    onRangeSelected = onHistoryRangeSelected,
+                    modifier = Modifier.padding(top = 8.dp),
+                )
             }
         }
     }
@@ -155,7 +166,7 @@ private fun HabitCard(card: HabitCardState, onDone: () -> Unit, modifier: Modifi
 }
 
 @get:StringRes
-private val Habit.nameRes: Int
+internal val Habit.nameRes: Int
     get() = when (this) {
         Habit.FLOSS -> R.string.habit_floss
         Habit.MOUTHWASH -> R.string.habit_mouthwash
@@ -176,6 +187,7 @@ private fun DashboardScreenPreview() {
             onDone = {},
             onUndo = {},
             onUndoDismissed = {},
+            onHistoryRangeSelected = {},
         )
     }
 }

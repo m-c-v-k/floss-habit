@@ -51,7 +51,7 @@ Streak rules, calculated per habit:
 
 ### App
 - **Dashboard:** today's checklist for both habits (with how many times each was logged today), current and longest streaks.
-- **History:** a heatmap of logs per day for each habit; the last 7 days by default, switchable to a month and to all time. Shading shows how many logs a day has.
+- **History:** a heatmap of logs per day for each habit, with the total number of days done (all time). Ranges: the last 7 days (default), the current calendar month, and all time (from the first log). Month and all time are shown as Monday-first calendar weeks. Shading has four steps: no logs, 1, 2, and 3 or more.
 - **Logging:** log from the dashboard as often as wanted (several logs a day are kept for the history; the streak counts the day once); undo the last log.
 - **Learn:** benefits and how-to articles for flossing and mouthwash, including mouthwash timing relative to brushing.
 - **Settings:** reminder times, language, notification permission status.

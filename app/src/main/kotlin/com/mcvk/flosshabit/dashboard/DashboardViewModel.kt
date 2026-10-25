@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mcvk.flosshabit.core.Habit
 import com.mcvk.flosshabit.core.HabitLog
+import com.mcvk.flosshabit.core.History
+import com.mcvk.flosshabit.core.HistoryRange
 import com.mcvk.flosshabit.core.StreakCalculator
 import com.mcvk.flosshabit.data.HabitLogRepository
 import kotlinx.coroutines.delay
@@ -26,19 +28,30 @@ class DashboardViewModel(
 ) : ViewModel() {
 
     private val undoable = MutableStateFlow<HabitLog?>(null)
+    private val historyRange = MutableStateFlow(HistoryRange.WEEK)
 
     val uiState: StateFlow<DashboardUiState> = combine(
         repository.observeLogs(Habit.FLOSS),
         repository.observeLogs(Habit.MOUTHWASH),
         today,
         undoable,
-    ) { floss, mouthwash, date, lastLog ->
+        historyRange,
+    ) { floss, mouthwash, date, lastLog, range ->
+        // Both heatmaps cover the same days, starting at the earliest log of either habit.
+        val firstLog = (floss + mouthwash).minOfOrNull { it.localDate }
+        val period = History.period(range, date, firstLog)
         DashboardUiState(
             isLoading = false,
             cards = listOf(card(Habit.FLOSS, floss, date), card(Habit.MOUTHWASH, mouthwash, date)),
             undoable = lastLog,
+            historyRange = range,
+            history = listOf(history(Habit.FLOSS, floss, period, date), history(Habit.MOUTHWASH, mouthwash, period, date)),
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), DashboardUiState())
+
+    fun onHistoryRangeSelected(range: HistoryRange) {
+        historyRange.value = range
+    }
 
     fun onDone(habit: Habit) {
         viewModelScope.launch { undoable.value = repository.log(habit) }
@@ -52,6 +65,16 @@ class DashboardViewModel(
 
     fun onUndoDismissed() {
         undoable.value = null
+    }
+
+    private fun history(habit: Habit, logs: List<HabitLog>, period: ClosedRange<LocalDate>, today: LocalDate): HabitHistoryState {
+        val days = History.dailyCounts(logs, habit, period)
+        return HabitHistoryState(
+            habit = habit,
+            totalDays = History.totalDays(logs, habit, today),
+            days = days,
+            weeks = History.weeks(days),
+        )
     }
 
     private fun card(habit: Habit, logs: List<HabitLog>, today: LocalDate) = HabitCardState(

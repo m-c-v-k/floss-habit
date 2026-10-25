@@ -2,6 +2,7 @@ package com.mcvk.flosshabit.dashboard
 
 import com.mcvk.flosshabit.core.Habit
 import com.mcvk.flosshabit.core.HabitLog
+import com.mcvk.flosshabit.core.HistoryRange
 import com.mcvk.flosshabit.data.HabitLogRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -100,6 +101,39 @@ class DashboardViewModelTest {
         assertEquals(0, floss.logsToday)
         assertFalse(floss.streak.doneToday)
         assertEquals(1, floss.streak.current) // not broken until the new day is over
+    }
+
+    @Test
+    fun historyShowsTheLastSevenDaysByDefault() = runTest {
+        repository.add(Habit.FLOSS, today.minusDays(2))
+        val viewModel = viewModel()
+        viewModel.onDone(Habit.FLOSS)
+        viewModel.onDone(Habit.FLOSS)
+        val state = viewModel.uiState.value
+        assertEquals(HistoryRange.WEEK, state.historyRange)
+        val floss = state.history.single { it.habit == Habit.FLOSS }
+        assertEquals(listOf(0, 0, 0, 0, 1, 0, 2), floss.days.map { it.count })
+        assertEquals(today, floss.days.last().date)
+        assertEquals(2, floss.totalDays)
+        assertEquals(0, state.history.single { it.habit == Habit.MOUTHWASH }.totalDays)
+    }
+
+    @Test
+    fun allTimeStartsAtTheEarliestLogOfEitherHabit() = runTest {
+        val first = LocalDate.of(2026, 9, 1)
+        repository.add(Habit.MOUTHWASH, first)
+        repository.add(Habit.FLOSS, LocalDate.of(2026, 10, 1))
+        val viewModel = viewModel()
+        viewModel.onHistoryRangeSelected(HistoryRange.ALL_TIME)
+        val state = viewModel.uiState.value
+        assertEquals(HistoryRange.ALL_TIME, state.historyRange)
+        state.history.forEach { habit ->
+            assertEquals(first, habit.days.first().date)
+            assertEquals(today, habit.days.last().date)
+            assertTrue(habit.weeks.all { it.size == 7 })
+        }
+        viewModel.onHistoryRangeSelected(HistoryRange.MONTH)
+        assertEquals(LocalDate.of(2026, 10, 1), viewModel.uiState.value.history.first().days.first().date)
     }
 
     @Test
