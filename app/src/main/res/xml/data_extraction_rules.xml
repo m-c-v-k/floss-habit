@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+. Everything is included; cloud backup only runs when the user's
+     backup is end-to-end encrypted (a screen lock is set). Users switch backup
+     on or off in the system settings. -->
+<data-extraction-rules>
+    <cloud-backup disableIfNoEncryptionCapabilities="true" />
+    <device-transfer />
+</data-extraction-rules>
