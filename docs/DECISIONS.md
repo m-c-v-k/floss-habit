@@ -2,6 +2,8 @@
 
 Newest first. Format: date, decision, why. Product decisions made before this log are in the Decisions table in `SPEC.md`.
 
+- **2026-10-25**: Toolchain matches Android_Training_App: Gradle 9.4.1, AGP 9.2.1 (built-in Kotlin), Kotlin 2.2.10, compile SDK 36.1, Java 17. One set of versions across Marcus's apps; compile SDK 36.1 because the local `android-36` platform has no `android.jar`.
+- **2026-10-25**: No dependency-injection library; objects are created by hand in one place. Keeps the build small until a real need appears.
 - **2026-10-21**: Health content only from government or public-sector sources in the country of each language: Swedish text from Swedish sources (1177, Folktandvården, Socialstyrelsen), English text from UK sources (NHS, GOV.UK). ADA MouthHealthy is dropped as a US, non-government source. Keeps each language's advice consistent with the health system its readers use.
 - **2026-10-21**: Reminders use WorkManager, not exact alarms. It survives reboot and needs no exact-alarm permission; a reminder arriving a few minutes late is fine for a daily habit.
 - **2026-10-21**: Package name `com.mcvk.flosshabit` (same pattern as `com.mcvk.trainingapp`), replacing the `com.example.flosshabit` placeholder. Set before the `:app` module exists, because the applicationId cannot change after release.
