@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 8-11. Everything is included; users switch backup on or off in the system settings. -->
+<full-backup-content />

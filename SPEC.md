@@ -78,4 +78,4 @@ Content rules:
 
 ## Open items
 - Verify exact source pages and wording for each article.
-- Privacy: all data stays on the device; no accounts or analytics unless decided otherwise.
+- Privacy: no accounts or analytics unless decided otherwise. Data is stored on the device and included in Android backup, which the user can turn off in system settings (see `docs/DECISIONS.md`).
