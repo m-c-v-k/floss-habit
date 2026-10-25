@@ -50,8 +50,9 @@ Streak rules, calculated per habit:
 - Reminders are scheduled with WorkManager, which survives reboot and needs no exact-alarm permission. Delivery is inexact (a reminder may arrive some minutes late); test it against battery optimisation.
 
 ### App
-- **Dashboard:** today's checklist for both habits, current and longest streaks, a week or month calendar view.
-- **Logging:** log from the dashboard; undo the last log.
+- **Dashboard:** today's checklist for both habits (with how many times each was logged today), current and longest streaks.
+- **History:** a heatmap of logs per day for each habit; the last 7 days by default, switchable to a month and to all time. Shading shows how many logs a day has.
+- **Logging:** log from the dashboard as often as wanted (several logs a day are kept for the history; the streak counts the day once); undo the last log.
 - **Learn:** benefits and how-to articles for flossing and mouthwash, including mouthwash timing relative to brushing.
 - **Settings:** reminder times, language, notification permission status.
 
