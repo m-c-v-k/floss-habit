@@ -1,6 +1,6 @@
 # floss-habit: working agreements
 
-Kotlin + Jetpack Compose Android app (with Glance widgets) for building a flossing and mouthwash habit. Plan and scope: `SPEC.md`. Keep that file current when scope changes.
+Kotlin + Jetpack Compose Android app (with Glance widgets) for building daily habits the user chooses (it started as a flossing and mouthwash tracker). Plan and scope: `SPEC.md`. Keep that file current when scope changes.
 
 ## Environment
 
