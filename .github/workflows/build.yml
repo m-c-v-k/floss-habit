@@ -23,16 +23,8 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
-      # Until the Android app module exists, only the pure-Kotlin modules are built and tested.
       - name: Build, unit test and lint
-        run: |
-          if [ ! -f gradlew ]; then
-            echo "::notice::No Gradle project yet; nothing to build."
-          elif [ -f app/build.gradle.kts ]; then
-            ./gradlew assembleDevDebug testDevDebugUnitTest lintDevDebug assembleProdDebug :core:test --stacktrace
-          else
-            ./gradlew test --stacktrace
-          fi
+        run: ./gradlew assembleDevDebug testDevDebugUnitTest lintDevDebug assembleProdDebug :core:test --stacktrace
 
       - name: Upload reports
         if: failure()
